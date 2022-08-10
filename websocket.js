@@ -1,4 +1,5 @@
 const WebSocket = require('ws');
+const { getCurrencyList } = require('./kpiData');
 
 const websocketServer = async (expressServer) => {
   const websocketServer = new WebSocket.Server({
@@ -13,7 +14,6 @@ const websocketServer = async (expressServer) => {
   });
 
   websocketServer.on('connection', (websocketConnection, connectionRequest) => {
-
     const url = new URL(
       connectionRequest.url,
       `http://${connectionRequest.headers.host}/`
@@ -26,6 +26,17 @@ const websocketServer = async (expressServer) => {
       websocketConnection.send(
         JSON.stringify({ message: `Message receieved: ${parsedMessage}` })
       );
+    });
+
+    const sendData = () => {
+      websocketConnection.send(JSON.stringify(getCurrencyList()));
+    };
+
+    let dataInterval = setInterval(sendData, 1000);
+
+    websocketConnection.on('close', () => {
+      console.log('clearing interval');
+      clearInterval(dataInterval);
     });
   });
 
