@@ -32,7 +32,9 @@ const websocketServer = async (expressServer) => {
       websocketConnection.send(JSON.stringify(getCurrencyList()));
     };
 
-    let dataInterval = setInterval(sendData, 1000);
+    sendData();
+
+    let dataInterval = setInterval(sendData, 5000);
 
     websocketConnection.on('close', () => {
       console.log('clearing interval');
