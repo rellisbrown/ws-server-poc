@@ -86,6 +86,26 @@ const getCurrencyList = () => {
       trVolume: createRange(0, 5),
       time: '18:00',
     },
+    {
+      id: 9,
+      title: 'ZAR',
+      projected: createRange(100, 20),
+      actual: createRange(500, 50),
+      projFailing: createRange(1000, 200),
+      actFailing: createRange(50, 20),
+      trVolume: createRange(20, 5),
+      time: '07:30',
+    },
+    {
+      id: 10,
+      title: 'ABC',
+      projected: createRange(100, 20),
+      actual: createRange(500, 50),
+      projFailing: createRange(1000, 200),
+      actFailing: createRange(50, 20),
+      trVolume: createRange(20, 5),
+      time: '23:30',
+    },
   ];
 };
 
